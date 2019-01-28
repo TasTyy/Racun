@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racun", "Racun\Racun.csproj", "{C9E6291D-C75C-4012-888F-A1E964ABC0BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racun_dedovanje", "Racun_dedovanje\Racun_dedovanje.csproj", "{195CA77B-A59C-4BF5-AD75-79BCA267C12C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9E6291D-C75C-4012-888F-A1E964ABC0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E6291D-C75C-4012-888F-A1E964ABC0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E6291D-C75C-4012-888F-A1E964ABC0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E6291D-C75C-4012-888F-A1E964ABC0BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195CA77B-A59C-4BF5-AD75-79BCA267C12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195CA77B-A59C-4BF5-AD75-79BCA267C12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195CA77B-A59C-4BF5-AD75-79BCA267C12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195CA77B-A59C-4BF5-AD75-79BCA267C12C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEEDED4D-4B2D-42CF-B2F9-16896B17AD50}
+	EndGlobalSection
+EndGlobal

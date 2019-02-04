@@ -71,7 +71,7 @@
             this.povecajButton = new System.Windows.Forms.Button();
             this.prihranekButton = new System.Windows.Forms.Button();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.obrestnaMeraLabel = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.zamenjajValutoButton = new System.Windows.Forms.Button();
@@ -489,7 +489,7 @@
             this.groupBox7.Controls.Add(this.povecajButton);
             this.groupBox7.Controls.Add(this.prihranekButton);
             this.groupBox7.Controls.Add(this.textBox9);
-            this.groupBox7.Controls.Add(this.label15);
+            this.groupBox7.Controls.Add(this.obrestnaMeraLabel);
             this.groupBox7.Controls.Add(this.label14);
             this.groupBox7.Location = new System.Drawing.Point(350, 199);
             this.groupBox7.Name = "groupBox7";
@@ -506,6 +506,7 @@
             this.povecajButton.TabIndex = 19;
             this.povecajButton.Text = "Povečaj";
             this.povecajButton.UseVisualStyleBackColor = true;
+            this.povecajButton.Click += new System.EventHandler(this.povecajButton_Click);
             // 
             // prihranekButton
             // 
@@ -515,6 +516,7 @@
             this.prihranekButton.TabIndex = 18;
             this.prihranekButton.Text = "Prihranek";
             this.prihranekButton.UseVisualStyleBackColor = true;
+            this.prihranekButton.Click += new System.EventHandler(this.prihranekButton_Click);
             // 
             // textBox9
             // 
@@ -523,14 +525,14 @@
             this.textBox9.Size = new System.Drawing.Size(133, 20);
             this.textBox9.TabIndex = 15;
             // 
-            // label15
+            // obrestnaMeraLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 78);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(87, 13);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "Obrestna mera: /";
+            this.obrestnaMeraLabel.AutoSize = true;
+            this.obrestnaMeraLabel.Location = new System.Drawing.Point(6, 78);
+            this.obrestnaMeraLabel.Name = "obrestnaMeraLabel";
+            this.obrestnaMeraLabel.Size = new System.Drawing.Size(87, 13);
+            this.obrestnaMeraLabel.TabIndex = 18;
+            this.obrestnaMeraLabel.Text = "Obrestna mera: /";
             // 
             // label14
             // 
@@ -561,6 +563,7 @@
             this.zamenjajValutoButton.TabIndex = 15;
             this.zamenjajValutoButton.Text = "Zamenjaj valuto";
             this.zamenjajValutoButton.UseVisualStyleBackColor = true;
+            this.zamenjajValutoButton.Click += new System.EventHandler(this.zamenjajValutoButton_Click);
             // 
             // textBox10
             // 
@@ -596,6 +599,7 @@
             this.likvidnoButton.TabIndex = 21;
             this.likvidnoButton.Text = "Podjetje likvidno?";
             this.likvidnoButton.UseVisualStyleBackColor = true;
+            this.likvidnoButton.Click += new System.EventHandler(this.likvidnoButton_Click);
             // 
             // Form1
             // 
@@ -679,7 +683,7 @@
         private System.Windows.Forms.Button povecajButton;
         private System.Windows.Forms.Button prihranekButton;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label obrestnaMeraLabel;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button zamenjajValutoButton;

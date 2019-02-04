@@ -18,6 +18,10 @@ namespace Racun
             InitializeComponent();
         }
 
+        OsebniRacun osebniRacun = new OsebniRacun();
+        ValutniRacun valutniRacun = new ValutniRacun();
+        PoslovniRacun poslovniRacun = new PoslovniRacun();
+
         private void Form1_Load(object sender, EventArgs e)
         {
             groupBox1.Enabled = true;
@@ -61,8 +65,6 @@ namespace Racun
             Double.TryParse(textBox2.Text, out stanje);
             Double.TryParse(textBox3.Text, out limit);
 
-            Racun_dedovanje.Racun racun = new Racun_dedovanje.Racun(imeLastnika, stanje, limit);
-
             if (comboBox1.SelectedIndex == 0)
             {
                 // Osebni račun
@@ -80,9 +82,15 @@ namespace Racun
                 double obrestnaMera;
                 Double.TryParse(textBox4.Text, out obrestnaMera);
 
-                OsebniRacun osebniRacun = new OsebniRacun(imeLastnika, stanje, limit, varcevalni, obrestnaMera);
+                osebniRacun.imeLastnika = imeLastnika;
+                osebniRacun.stanje = stanje;
+                osebniRacun.limit = limit;
+                osebniRacun.varcevalni = varcevalni;
+                osebniRacun.obrestnaMera = obrestnaMera;
 
                 stanjeLabel.Text = "Stanje: " + stanje;
+
+                obrestnaMeraLabel.Text = "Obrestna mera: " + obrestnaMera;
 
                 groupBox5.Enabled = true;
                 groupBox6.Enabled = true;
@@ -93,6 +101,13 @@ namespace Racun
             else if (comboBox1.SelectedIndex == 1)
             {
                 // Valutni račun
+
+                string primarnaValuta = comboBox2.Text;
+
+                valutniRacun.imeLastnika = imeLastnika;
+                valutniRacun.stanje = stanje;
+                valutniRacun.limit = limit;
+                valutniRacun.primarnaValuta = primarnaValuta;
 
                 stanjeLabel.Text = "Stanje: " + stanje;
 
@@ -109,26 +124,45 @@ namespace Racun
                 string nazivPodjetja = textBox6.Text;
                 string tipPodjetja;
 
-                PoslovniRacun poslovniRacun;
                 if (radioButton1.Checked)
                 {
                     tipPodjetja = radioButton1.Text;
-                    poslovniRacun = new PoslovniRacun(imeLastnika, stanje, limit, nazivPodjetja, tipPodjetja);
+
+                    poslovniRacun.imeLastnika = imeLastnika;
+                    poslovniRacun.stanje = stanje;
+                    poslovniRacun.limit = limit;
+                    poslovniRacun.nazivPodjetja = nazivPodjetja;
+                    poslovniRacun.tipPodjetja = tipPodjetja;
                 }
                 else if (radioButton2.Checked)
                 {
                     tipPodjetja = radioButton2.Text;
-                    poslovniRacun = new PoslovniRacun(imeLastnika, stanje, limit, nazivPodjetja, tipPodjetja);
+
+                    poslovniRacun.imeLastnika = imeLastnika;
+                    poslovniRacun.stanje = stanje;
+                    poslovniRacun.limit = limit;
+                    poslovniRacun.nazivPodjetja = nazivPodjetja;
+                    poslovniRacun.tipPodjetja = tipPodjetja;
                 }
                 else if (radioButton3.Checked)
                 {
                     tipPodjetja = radioButton3.Text;
-                    poslovniRacun = new PoslovniRacun(imeLastnika, stanje, limit, nazivPodjetja, tipPodjetja);
+
+                    poslovniRacun.imeLastnika = imeLastnika;
+                    poslovniRacun.stanje = stanje;
+                    poslovniRacun.limit = limit;
+                    poslovniRacun.nazivPodjetja = nazivPodjetja;
+                    poslovniRacun.tipPodjetja = tipPodjetja;
                 }
                 else if (radioButton4.Checked)
                 {
                     tipPodjetja = radioButton4.Text;
-                    poslovniRacun = new PoslovniRacun(imeLastnika, stanje, limit, nazivPodjetja, tipPodjetja);
+
+                    poslovniRacun.imeLastnika = imeLastnika;
+                    poslovniRacun.stanje = stanje;
+                    poslovniRacun.limit = limit;
+                    poslovniRacun.nazivPodjetja = nazivPodjetja;
+                    poslovniRacun.tipPodjetja = tipPodjetja;
                 }
 
                 stanjeLabel.Text = "Stanje: " + stanje;
@@ -143,54 +177,119 @@ namespace Racun
 
         private void dodajButton_Click(object sender, EventArgs e)
         {
-            //ne razumem
             string valuta = textBox5.Text;
-            List<string> seznamValut = new List<string>();
-            seznamValut.Add(valuta);
-            
+            listBox1.Items.Add(valuta);
+            comboBox2.Items.Add(valuta);
+
+            textBox5.Text = "";
         }
 
         private void dvigButton_Click(object sender, EventArgs e)
         {
-            string imeLastnika = textBox1.Text;
-            double stanje;
-            double limit;
-            bool varcevalni;
-            if (checkBox1.Checked)
+            if (comboBox1.SelectedIndex == 0)
             {
-                varcevalni = true;
+                double znesek = Convert.ToDouble(textBox7.Text);
+                if (osebniRacun.Dvig(znesek) == true)
+                {
+                    stanjeLabel.Text = "Stanje: " + osebniRacun.stanje.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Ni možno dvigni denarja!");
+                }
+                textBox7.Text = "";
             }
-            else
+            else if (comboBox1.SelectedIndex == 1)
             {
-                varcevalni = false;
+                double znesek = Convert.ToDouble(textBox7.Text);
+                if (valutniRacun.Dvig(znesek) == true)
+                {
+                    stanjeLabel.Text = "Stanje: " + valutniRacun.stanje.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Ni možno dvigni denarja!");
+                }
+                textBox7.Text = "";
             }
-            double obrestnaMera;
-            double znesek;
-            Double.TryParse(textBox7.Text, out znesek);
-            Double.TryParse(textBox2.Text, out stanje);
-            Double.TryParse(textBox3.Text, out limit);
-            Double.TryParse(textBox4.Text, out obrestnaMera);
-
-            OsebniRacun r = new OsebniRacun(imeLastnika, stanje, limit, varcevalni, obrestnaMera);
-            r.Dvig(stanje, znesek);
-            MessageBox.Show(stanje.ToString());
-            stanjeLabel.Text = "Stanje: " + stanje;
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                double znesek = Convert.ToDouble(textBox7.Text);
+                if (poslovniRacun.Dvig(znesek) == true)
+                {
+                    stanjeLabel.Text = "Stanje: " + poslovniRacun.stanje.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Ni možno dvigni denarja!");
+                }
+                textBox7.Text = "";
+            }
+            
         }
 
         private void pologButton_Click(object sender, EventArgs e)
         {
-            string imeLastnika = textBox1.Text;
-            double stanje;
-            double limit;
-            double znesek;
-            Double.TryParse(textBox8.Text, out znesek);
-            Double.TryParse(textBox2.Text, out stanje);
-            Double.TryParse(textBox3.Text, out limit);
+            if (comboBox1.SelectedIndex == 0)
+            {
+                double znesek = Convert.ToDouble(textBox8.Text);
+                osebniRacun.Polog(znesek);
+                stanjeLabel.Text = "Stanje: " + osebniRacun.stanje.ToString();
 
-            Racun_dedovanje.Racun r = new Racun_dedovanje.Racun(imeLastnika, stanje, limit);
-            r.Polog(stanje, znesek);
-            MessageBox.Show(stanje.ToString());
-            stanjeLabel.Text = "Stanje: " + stanje;
+                textBox8.Text = "";
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                double znesek = Convert.ToDouble(textBox8.Text);
+                valutniRacun.Polog(znesek);
+                stanjeLabel.Text = "Stanje: " + valutniRacun.stanje.ToString();
+
+                textBox8.Text = "";
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                double znesek = Convert.ToDouble(textBox8.Text);
+                poslovniRacun.Polog(znesek);
+                stanjeLabel.Text = "Stanje: " + poslovniRacun.stanje.ToString();
+
+                textBox8.Text = "";
+            }
+        }
+
+        private void likvidnoButton_Click(object sender, EventArgs e)
+        {
+            if (poslovniRacun.Likvidno() == true)
+            {
+                MessageBox.Show("Podjetje ni likvidno!");
+            }
+            else
+            {
+                MessageBox.Show("Podjetje je likvidno!");
+            }
+        }
+
+        private void prihranekButton_Click(object sender, EventArgs e)
+        {
+            double povpMesecnoStanje = Convert.ToDouble(textBox9.Text);
+            double prihranek = osebniRacun.IzracunajLetniPrihranek(povpMesecnoStanje);
+            MessageBox.Show("Prihranek: " + prihranek);
+
+            textBox9.Text = "";
+        }
+
+        private void povecajButton_Click(object sender, EventArgs e)
+        {
+            osebniRacun.NastaviObrestnoMero();
+            obrestnaMeraLabel.Text = "Obrestna mera: " + Convert.ToString(osebniRacun.obrestnaMera);
+        }
+
+        private void zamenjajValutoButton_Click(object sender, EventArgs e)
+        {
+            double menjalniTecaj = Convert.ToDouble(textBox10.Text);
+            valutniRacun.ZamenjajValuto(menjalniTecaj);
+            stanjeLabel.Text = "Stanje: " + valutniRacun.stanje;
+
+            textBox10.Text = "";
         }
     }
 }

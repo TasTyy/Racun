@@ -38,23 +38,21 @@ namespace Racun_dedovanje
             limit = Limit;
         }
 
-        public void Dvig(double stanje, double znesek)
+        public bool Dvig(double znesek)
         {
-            bool pozitivno;
-            if (stanje > znesek)
+            if (stanje - znesek < 0 )
             {
-                stanje = stanje - znesek;
-                pozitivno = true;
+                return false;
             }
             else
             {
-                pozitivno = false;
+                stanje = stanje - znesek;
+                return true;
             }
 
-            return;
         }
 
-        public void Polog(double stanje, double znesek)
+        public void Polog(double znesek)
         {
             stanje = stanje + znesek;
         }
@@ -97,17 +95,16 @@ namespace Racun_dedovanje
             obrestnaMera = ObrestnaMera;
         }
 
-        public void IzracunajLetniPrihranek(double stanje, double obrestnaMera)
+        public double IzracunajLetniPrihranek(double povpMesecnoStanje)
         {
-            double prihranek = 0;
-            prihranek = stanje * obrestnaMera * 12;
+            return povpMesecnoStanje = stanje * obrestnaMera * 12;
         }
 
-        public void NastaviObrestnoMero(double ObrestnaMera)
+        public void NastaviObrestnoMero()
         {
             if (varcevalni == true)
             {
-                obrestnaMera = ObrestnaMera * 0.5;
+                obrestnaMera = obrestnaMera + 0.5;
             }
             else
             {
@@ -125,8 +122,8 @@ namespace Racun_dedovanje
 
     public class ValutniRacun : Racun
     {
-        public List<string>seznamValut { get; set; }
         public string primarnaValuta { get; set; }
+        public List<string> seznamValut = new List<string>();
 
         public ValutniRacun()
         {
@@ -151,12 +148,15 @@ namespace Racun_dedovanje
             primarnaValuta = PrimarnaValuta;
         }
 
-        //public void ZamenjajValuto()
+        public void ZamenjajValuto(double menjalniTecaj)
+        {
+            stanje = stanje * menjalniTecaj;
+        }
 
         public override string ToString()
         {
             string stringToReturn;
-            stringToReturn = imeLastnika + " " + stanje + " " + limit + " " + seznamValut + " " + primarnaValuta;
+            stringToReturn = imeLastnika + " " + stanje + " " + limit +  " " + primarnaValuta;
             return stringToReturn;
         }
     }
@@ -191,16 +191,15 @@ namespace Racun_dedovanje
             tipPodjetja = TipPodjetja;
         }
 
-        public void Likvidno()
+        public bool Likvidno()
         {
-            bool likvidno;
             if (stanje > 0)
             {
-                likvidno = true;
+                return true;
             }
             else
             {
-                likvidno = false;
+                return false;
             }
         }
 
